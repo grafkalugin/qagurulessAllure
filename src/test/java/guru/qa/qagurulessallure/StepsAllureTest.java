@@ -9,10 +9,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
-public class StepsAllureTest {
-
-    private static String REPOSITORY = "eroshenkoam/allure-example";
-    private static String ISSUE = "80";
+public class StepsAllureTest extends BaseTest {
 
     @Test
     @Feature("Issue в репозитории")

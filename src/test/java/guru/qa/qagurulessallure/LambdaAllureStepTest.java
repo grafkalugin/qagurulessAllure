@@ -15,9 +15,7 @@ import static io.qameta.allure.Allure.attachment;
 import static io.qameta.allure.Allure.step;
 import static org.openqa.selenium.By.linkText;
 
-public class LambdaAllureStepTest {
-    private static String REPOSITORY = "eroshenkoam/allure-example";
-    private static int ISSUE = 80;
+public class LambdaAllureStepTest extends BaseTest {
 
     @Test
     @Feature("Issue в репозитории")
@@ -35,17 +33,13 @@ public class LambdaAllureStepTest {
             attachment("Source", webdriver().driver().source());
         });
         step("Найти репозиторий " + REPOSITORY, () ->{
-            $(".header-search-input").setValue("eroshenkoam/allure-example").pressEnter();
+            $(".header-search-input").setValue(REPOSITORY).pressEnter();
         });
-        step("Перейти в репозиторий "+ REPOSITORY, () -> {
-            $(linkText("eroshenkoam/allure-example")).click();
-        });
-        step("Перейти в раздел issues", () -> {
-            $("#issues-tab").click();
-        });
+        step("Перейти в репозиторий "+ REPOSITORY, () -> $(linkText("REPOSITORY")).click());
+        step("Перейти в раздел issues", () -> $("#issues-tab").click());
         step("Проверить наличие issue по тексту" + ISSUE, () -> {
             $(withText("#" + ISSUE)).should(Condition.exist);
-        } );
+        });
 
     }
 }
